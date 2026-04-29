@@ -1,0 +1,237 @@
+const fs = require("fs");
+const path = require("path");
+
+const translationsPath = path.join(__dirname, "src", "lib", "i18n", "translations.ts");
+let fileContent = fs.readFileSync(translationsPath, "utf-8");
+
+const t_data = {
+  "en": {
+    "trust.anonymous": "Anonymous Reporting",
+    "trust.identity": "Identity Protected",
+    "trust.community": "Community Verified",
+    "trust.tamper": "Tamper-Proof History",
+    "services.label": "Services",
+    "services.heading": "In short, our platform helps communities get justice",
+    "services.learn": "Learn More",
+    "service.voice": "Voice-First Intake",
+    "service.voice.desc": "Multilingual voice recording with automatic transcription.",
+    "service.ai": "AI-Powered Processing",
+    "service.ai.desc": "Complaints are automatically categorized.",
+    "service.monitor": "Performance Monitoring",
+    "service.monitor.desc": "Real-time dashboards track complaint resolution rates.",
+    "service.verify": "Proof-of-Action Verification",
+    "service.verify.desc": "Before-and-after evidence is logged with tamper-proof timestamps.",
+    "service.transparent": "Transparency & Accountability",
+    "service.transparent.desc": "Every status change is publicly visible.",
+    "service.commval": "Community Validation",
+    "service.commval.desc": "Genuineness scores and consensus voting.",
+    "sectors.label": "Sectors",
+    "principles.label": "Our Approach",
+    "principles.heading": "Guiding Principles to Our Approach",
+    "cta.title": "Your Voice Matters",
+    "cta.desc": "Every complaint is a step toward accountability.",
+    "cta.btn": "Report an Issue Now",
+    "impact.heading": "VISHWAS Platform Impact",
+    "impact.years": "Years",
+    "impact.districts": "Districts",
+    "impact.evaluations": "Evaluations",
+    "impact.study": "In a study by VISHWAS, our platform evaluations showed distinct advantages over other comparable grievance systems.",
+    "impact.effective": "More Effective",
+    "impact.learnmore": "LEARN MORE",
+    "post.anonymous": "Anonymous Citizen",
+    "post.verified": "Verified Citizen",
+    "post.sentTo": "Sent to:",
+    "post.needsVotes": "more votes to automatically alert the authorities.",
+    "post.communityFund": "Community Fund",
+    "post.boostAction": "Boost Community Action",
+    "post.escrow": "Funds are held in escrow for legal or local NGO action.",
+    "post.confirm": "Confirm Support",
+    "comm.empty.title": "No complaints found",
+    "comm.empty.desc": "Be the first to raise an issue for your community.",
+    "nav.selectLang": "Select Language",
+    "home.hero.speak": "Speak Up.",
+    "home.hero.stay": "Stay Safe.",
+    "home.hero.see": "See Justice.",
+    "home.hero.tagline": "Your Voice. Your Right. Your Justice. Report issues anonymously with your voice, track real progress, and hold authorities accountable.",
+  },
+  "hi": {
+    "trust.anonymous": "अनाम रिपोर्टिंग",
+    "trust.identity": "पहचान सुरक्षित",
+    "trust.community": "समुदाय द्वारा सत्यापित",
+    "trust.tamper": "छेड़छाड़-मुक्त इतिहास",
+    "services.label": "सेवाएं",
+    "services.heading": "संक्षेप में, हमारा मंच समुदायों को न्याय दिलाने में मदद करता है",
+    "services.learn": "और जानें",
+    "service.voice": "वॉयस-फर्स्ट इनटेक",
+    "service.voice.desc": "स्वचालित प्रतिलेखन के साथ बहुभाषी आवाज रिकॉर्डिंग।",
+    "service.ai": "एआई-संचालित प्रसंस्करण",
+    "service.ai.desc": "शिकायतों को स्वचालित रूप से वर्गीकृत किया जाता है।",
+    "service.monitor": "प्रदर्शन निगरानी",
+    "service.monitor.desc": "वास्तविक समय डैशबोर्ड शिकायत समाधान दरों को ट्रैक करते हैं।",
+    "service.verify": "कार्रवाई का प्रमाण",
+    "service.verify.desc": "सबूत को टाइमस्टैम्प के साथ लॉग किया जाता है।",
+    "service.transparent": "पारदर्शिता और जवाबदेही",
+    "service.transparent.desc": "हर स्थिति परिवर्तन सार्वजनिक रूप से दिखाई देता है।",
+    "service.commval": "सामुदायिक सत्यापन",
+    "service.commval.desc": "सच्चाई स्कोर और सर्वसम्मति मतदान।",
+    "sectors.label": "क्षेत्र",
+    "principles.label": "हमारा दृष्टिकोण",
+    "principles.heading": "हमारे दृष्टिकोण के मार्गदर्शक सिद्धांत",
+    "cta.title": "आपकी आवाज़ मायने रखती है",
+    "cta.desc": "हर शिकायत जवाबदेही की दिशा में एक कदम है।",
+    "cta.btn": "अभी एक समस्या की रिपोर्ट करें",
+    "impact.heading": "विश्वास प्लेटफॉर्म का प्रभाव",
+    "impact.years": "वर्ष",
+    "impact.districts": "जिले",
+    "impact.evaluations": "मूल्यांकन",
+    "impact.study": "विश्वास द्वारा किए गए एक अध्ययन में, हमारे मंच ने अन्य प्रणालियों पर लाभ दिखाया।",
+    "impact.effective": "अधिक प्रभावी",
+    "impact.learnmore": "और जानें",
+    "post.anonymous": "अनाम नागरिक",
+    "post.verified": "सत्यापित नागरिक",
+    "post.sentTo": "भेजा गया:",
+    "post.needsVotes": "अधिकारियों को सतर्क करने के लिए और वोट।",
+    "post.communityFund": "सामुदायिक कोष",
+    "post.boostAction": "सामुदायिक कार्रवाई को बढ़ावा दें",
+    "post.escrow": "धनराशि कानूनी कार्रवाई के लिए एस्क्रो में रखी गई है।",
+    "post.confirm": "समर्थन की पुष्टि करें",
+    "comm.empty.title": "कोई शिकायत नहीं मिली",
+    "comm.empty.desc": "अपने समुदाय के लिए मुद्दा उठाने वाले पहले व्यक्ति बनें।",
+    "nav.selectLang": "भाषा चुनें",
+    "home.hero.speak": "आवाज़ उठाएं।",
+    "home.hero.stay": "सुरक्षित रहें।",
+    "home.hero.see": "न्याय देखें।",
+    "home.hero.tagline": "आपकी आवाज़। आपका अधिकार। आपका न्याय। गुमनाम रूप से रिपोर्ट करें, प्रगति को ट्रैक करें, और जवाबदेह ठहराएं।",
+  },
+  "mr": {
+    "trust.anonymous": "अनामित अहवाल",
+    "trust.identity": "ओळख सुरक्षित",
+    "trust.community": "समुदायाद्वारे सत्यापित",
+    "trust.tamper": "छेडछाड-मुक्त इतिहास",
+    "services.label": "सेवा",
+    "services.heading": "थोडक्यात, आमचे व्यासपीठ समुदायांना न्याय मिळवून देण्यास मदत करते",
+    "services.learn": "अधिक जाणून घ्या",
+    "service.voice": "व्हॉइस-फर्स्ट इनटेक",
+    "service.voice.desc": "स्वयंचलित ट्रान्सक्रिप्शनसह बहुभाषिक ऑडिओ रेकॉर्डिंग.",
+    "service.ai": "एआय-चालित प्रक्रिया",
+    "service.ai.desc": "तक्रारींचे स्वयंचलितपणे वर्गीकरण केले जाते.",
+    "service.monitor": "कामगिरी निरीक्षण",
+    "service.monitor.desc": "रिअल-टाइम डॅशबोर्ड तक्रार निवारण दरांचा मागोवा घेतात.",
+    "service.verify": "कृतीचा पुरावा",
+    "service.verify.desc": "पुरावे टाइमस्टॅम्पसह लॉग केले जातात.",
+    "service.transparent": "पारदर्शकता आणि उत्तरदायित्व",
+    "service.transparent.desc": "प्रत्येक स्थितीतील बदल सार्वजनिकपणे दृश्यमान असतो.",
+    "service.commval": "समुदाय पडताळणी",
+    "service.commval.desc": "खरेपणा स्कोअर आणि एकमत मतदान.",
+    "sectors.label": "क्षेत्रे",
+    "principles.label": "आमचा दृष्टीकोन",
+    "principles.heading": "आमच्या दृष्टीकोनाची मार्गदर्शक तत्त्वे",
+    "cta.title": "तुमचा आवाज महत्त्वाचा आहे",
+    "cta.desc": "प्रत्येक तक्रार ही उत्तरदायित्वाच्या दिशेने टाकलेले पाऊल आहे.",
+    "cta.btn": "आता समस्येची तक्रार करा",
+    "impact.heading": "विश्वास प्लॅटफॉर्मचा प्रभाव",
+    "impact.years": "वर्षे",
+    "impact.districts": "जिल्हे",
+    "impact.evaluations": "मूल्यांकन",
+    "impact.study": "विश्वासने केलेल्या अभ्यासात, आमच्या प्लॅटफॉर्मने इतर प्रणालींपेक्षा फायदे दर्शविले.",
+    "impact.effective": "अधिक प्रभावी",
+    "impact.learnmore": "अधिक जाणून घ्या",
+    "post.anonymous": "अनामित नागरिक",
+    "post.verified": "सत्यापित नागरिक",
+    "post.sentTo": "पाठवले:",
+    "post.needsVotes": "अधिकार्यांना सतर्क करण्यासाठी अधिक मते.",
+    "post.communityFund": "समुदाय निधी",
+    "post.boostAction": "सामुदायिक कृतीला चालना द्या",
+    "post.escrow": "कायदेशीर कारवाईसाठी निधी एस्क्रोमध्ये ठेवला जातो.",
+    "post.confirm": "समर्थनाची पुष्टी करा",
+    "comm.empty.title": "कोणतीही तक्रार आढळली नाही",
+    "comm.empty.desc": "तुमच्या समुदायासाठी समस्या मांडणारे पहिले व्हा.",
+    "nav.selectLang": "भाषा निवडा",
+    "home.hero.speak": "आवाज उठवा.",
+    "home.hero.stay": "सुरक्षित राहा.",
+    "home.hero.see": "न्याय पाहा.",
+    "home.hero.tagline": "तुमचा आवाज. तुमचा हक्क. तुमचा न्याय. निनावीपणे तक्रार करा, प्रगतीचा मागोवा घ्या आणि अधिकाऱ्यांना जबाबदार धरा.",
+  },
+  "kn": {
+    "trust.anonymous": "ಅನಾಮಧೇಯ ವರದಿ",
+    "trust.identity": "ಗುರುತು ಸುರಕ್ಷಿತ",
+    "trust.community": "ಸಮುದಾಯ ಪರಿಶೀಲಿಸಿದೆ",
+    "trust.tamper": "ಟ್ಯಾಂಪರ್-ಫ್ರೀ ಇತಿಹಾಸ",
+    "services.label": "ಸೇವೆಗಳು",
+    "services.heading": "ಸಂಕ್ಷಿಪ್ತವಾಗಿ, ಸಮುದಾಯಗಳಿಗೆ ನ್ಯಾಯ ಪಡೆಯಲು ನಮ್ಮ ವೇದಿಕೆ ಸಹಾಯ ಮಾಡುತ್ತದೆ",
+    "services.learn": "ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ",
+    "service.voice": "ಧ್ವನಿ-ಮೊದಲ ಸೇವನೆ",
+    "service.voice.desc": "ಸ್ವಯಂಚಾಲಿತ ಪ್ರತಿಲೇಖನದೊಂದಿಗೆ ಬಹುಭಾಷಾ ಧ್ವನಿ ರೆಕಾರ್ಡಿಂಗ್.",
+    "service.ai": "AI-ಚಾಲಿತ ಪ್ರಕ್ರಿಯೆ",
+    "service.ai.desc": "ದೂರುಗಳನ್ನು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ವರ್ಗೀಕರಿಸಲಾಗುತ್ತದೆ.",
+    "service.monitor": "ಕಾರ್ಯಕ್ಷಮತೆ ಮೇಲ್ವಿಚಾರಣೆ",
+    "service.monitor.desc": "ನೈಜ-ಸಮಯದ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್‌ಗಳು ದೂರು ಪರಿಹಾರ ದರಗಳನ್ನು ಟ್ರ್ಯಾಕ್ ಮಾಡುತ್ತವೆ.",
+    "service.verify": "ಕ್ರಿಯೆಯ ಪುರಾವೆ",
+    "service.verify.desc": "ಸಾಕ್ಷ್ಯವನ್ನು ಟೈಮ್‌ಸ್ಟ್ಯಾಂಪ್‌ಗಳೊಂದಿಗೆ ಲಾಗ್ ಮಾಡಲಾಗಿದೆ.",
+    "service.transparent": "ಪಾರದರ್ಶಕತೆ ಮತ್ತು ಹೊಣೆಗಾರಿಕೆ",
+    "service.transparent.desc": "ಪ್ರತಿ ಸ್ಥಿತಿ ಬದಲಾವಣೆಯು ಸಾರ್ವಜನಿಕವಾಗಿ ಗೋಚರಿಸುತ್ತದೆ.",
+    "service.commval": "ಸಮುದಾಯ ಪರಿಶೀಲನೆ",
+    "service.commval.desc": "ನೈಜ ಸ್ಕೋರ್‌ಗಳು ಮತ್ತು ಒಮ್ಮತದ ಮತದಾನ.",
+    "sectors.label": "ವಲಯಗಳು",
+    "principles.label": "ನಮ್ಮ ವಿಧಾನ",
+    "principles.heading": "ನಮ್ಮ ವಿಧಾನದ ಮಾರ್ಗದರ್ಶಿ ತತ್ವಗಳು",
+    "cta.title": "ನಿಮ್ಮ ಧ್ವನಿ ಮುಖ್ಯವಾಗಿದೆ",
+    "cta.desc": "ಪ್ರತಿ ದೂರು ಹೊಣೆಗಾರಿಕೆಯತ್ತ ಒಂದು ಹೆಜ್ಜೆ.",
+    "cta.btn": "ಈಗ ಸಮಸ್ಯೆಯನ್ನು ವರದಿ ಮಾಡಿ",
+    "impact.heading": "ವಿಶ್ವಾಸ್ ವೇದಿಕೆಯ ಪ್ರಭಾವ",
+    "impact.years": "ವರ್ಷಗಳು",
+    "impact.districts": "ಜಿಲ್ಲೆಗಳು",
+    "impact.evaluations": "ಮೌಲ್ಯಮಾಪನಗಳು",
+    "impact.study": "ವಿಶ್ವಾಸ್ ನಡೆಸಿದ ಅಧ್ಯಯನದಲ್ಲಿ, ನಮ್ಮ ವೇದಿಕೆ ಇತರ ವ್ಯವಸ್ಥೆಗಳಿಗಿಂತ ಅನುಕೂಲಗಳನ್ನು ತೋರಿಸಿದೆ.",
+    "impact.effective": "ಹೆಚ್ಚು ಪರಿಣಾಮಕಾರಿ",
+    "impact.learnmore": "ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ",
+    "post.anonymous": "ಅನಾಮಧೇಯ ನಾಗರಿಕ",
+    "post.verified": "ಪರಿಶೀಲಿಸಿದ ನಾಗರಿಕ",
+    "post.sentTo": "ಇದಕ್ಕೆ ಕಳುಹಿಸಲಾಗಿದೆ:",
+    "post.needsVotes": "ಅಧಿಕಾರಿಗಳನ್ನು ಎಚ್ಚರಿಸಲು ಹೆಚ್ಚಿನ ಮತಗಳು.",
+    "post.communityFund": "ಸಮುದಾಯ ನಿಧಿ",
+    "post.boostAction": "ಸಮುದಾಯ ಕ್ರಿಯೆಯನ್ನು ಹೆಚ್ಚಿಸಿ",
+    "post.escrow": "ಕಾನೂನು ಕ್ರಮಕ್ಕಾಗಿ ಹಣವನ್ನು ಎಸ್ಕ್ರೊದಲ್ಲಿ ಇರಿಸಲಾಗಿದೆ.",
+    "post.confirm": "ಬೆಂಬಲವನ್ನು ಖಚಿತಪಡಿಸಿ",
+    "comm.empty.title": "ಯಾವುದೇ ದೂರುಗಳು ಕಂಡುಬಂದಿಲ್ಲ",
+    "comm.empty.desc": "ನಿಮ್ಮ ಸಮುದಾಯಕ್ಕಾಗಿ ಸಮಸ್ಯೆಯನ್ನು ಎತ್ತುವ ಮೊದಲ ವ್ಯಕ್ತಿಯಾಗಿರಿ.",
+    "nav.selectLang": "ಭಾಷೆಯನ್ನು ಆಯ್ಕೆಮಾಡಿ",
+    "home.hero.speak": "ಧ್ವನಿ ಎತ್ತಿ.",
+    "home.hero.stay": "ಸುರಕ್ಷಿತವಾಗಿರಿ.",
+    "home.hero.see": "ನ್ಯಾಯ ನೋಡಿ.",
+    "home.hero.tagline": "ನಿಮ್ಮ ಧ್ವನಿ. ನಿಮ್ಮ ಹಕ್ಕು. ನಿಮ್ಮ ನ್ಯಾಯ. ಅನಾಮಧೇಯವಾಗಿ ವರದಿ ಮಾಡಿ, ಪ್ರಗತಿಯನ್ನು ಟ್ರ್ಯಾಕ್ ಮಾಡಿ ಮತ್ತು ಅಧಿಕಾರಿಗಳನ್ನು ಹೊಣೆಗಾರರನ್ನಾಗಿ ಮಾಡಿ.",
+  }
+};
+
+const allLangs = ["en", "hi", "mr", "kn", "te", "ta", "ml", "gu", "bn", "pa", "or"];
+
+// We will inject missing keys using English as fallback if not present in t_data
+for (const lang of allLangs) {
+  const parts = fileContent.split(`  ${lang}: {`);
+  if (parts.length === 2) {
+    let block = parts[1];
+    
+    for (const [key, englishText] of Object.entries(t_data.en)) {
+      const translatedText = (t_data[lang] && t_data[lang][key]) || englishText;
+      const searchStr = `"${key}": "${englishText}"`;
+      const fallbackSearchStr = `"${key}":`;
+      const safeTranslatedText = translatedText.replace(/"/g, '\\"').replace(/\n/g, ' ');
+      const replaceStr = `"${key}": "${safeTranslatedText}"`;
+      
+      if (block.includes(searchStr)) {
+        block = block.replace(searchStr, replaceStr);
+      } else if (!block.includes(fallbackSearchStr)) {
+        const endIdx = block.indexOf('  },');
+        if (endIdx !== -1) {
+          const before = block.substring(0, endIdx);
+          const after = block.substring(endIdx);
+          block = before + `    "${key}": "${safeTranslatedText}",\n` + after;
+        }
+      }
+    }
+    fileContent = parts[0] + `  ${lang}: {` + block;
+  }
+}
+
+fs.writeFileSync(translationsPath, fileContent, "utf-8");
+console.log("Applied local translations!");

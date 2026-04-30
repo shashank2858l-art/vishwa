@@ -29,7 +29,7 @@ api.interceptors.response.use(
       // Only auto-logout on genuine 401 from the server (not login/signup endpoints)
       if (status === 401 && typeof window !== "undefined") {
         const url = error.config?.url || "";
-        const isAuthEndpoint = url.includes("/auth/login") || url.includes("/auth/signup") || url.includes("/auth/admin-login");
+        const isAuthEndpoint = url.includes("/auth/login") || url.includes("/auth/signup") || url.includes("/auth/admin-login") || url.includes("/auth/google");
         // Don't clear auth on login/signup attempts — let the form show the error
         if (!isAuthEndpoint) {
           localStorage.removeItem("vishwas_token");

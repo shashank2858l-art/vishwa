@@ -22,8 +22,24 @@ const app = express();
 app.use(helmet());
 
 // ─── CORS ───────────────────────────────────────────────
+const allowedOrigins = env.corsOrigin.split(',').map((o) => o.trim());
+
 app.use(cors({
-  origin: env.corsOrigin.split(',').map((o) => o.trim()),
+  origin: function (origin, callback) {
+    // Allow requests with no origin (mobile apps, curl, health checks)
+    if (!origin) return callback(null, true);
+
+    // Check exact match from CORS_ORIGIN env var
+    if (allowedOrigins.includes(origin)) return callback(null, true);
+
+    // Allow all Vercel preview deployments for this project
+    if (origin.endsWith('.vercel.app')) return callback(null, true);
+
+    // Allow localhost in development
+    if (env.isDev && origin.includes('localhost')) return callback(null, true);
+
+    callback(new Error(`CORS: Origin ${origin} not allowed`));
+  },
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
